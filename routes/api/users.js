@@ -80,6 +80,19 @@ router.post('/register',(req,res)=>{
 * @desc Login  User
 * @ access Public
 */
+//////Delete user
+router.delete('/deleteUser/:id', async(req, res) => {
+
+    // Check for the existing name
+    await User.deleteOne({
+        _id: req.params.id
+    }, function (err) {
+      if (err) return handleError(err);
+      // deleted at most one tank document
+    });
+
+});
+//////////
 
 router.post('/login',(req,res)=>{
   User.findOne({username: req.body.username}).then(user=>{
@@ -1092,6 +1105,31 @@ router.put('/administerVQ/:id', async(req, res) => {
     // The data is valid and new we can register the user
 });
 
+router.put('/administerVQdeny/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.vqTest = false;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
 //Administer TestLicnosti
 router.put('/administerTL/:id', async(req, res) => {
 
@@ -1103,6 +1141,32 @@ router.put('/administerTL/:id', async(req, res) => {
         if (user) {
 
           user.availableTest.testLicnosti = true;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
+router.put('/administerTLdeny/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.testLicnosti = false;
           user.save().then(user=>{
             return res.status(201).json({
                 success: true,
@@ -1146,6 +1210,32 @@ router.put('/administerStavovi/:id', async(req, res) => {
     // The data is valid and new we can register the user
 });
 
+router.put('/administerStavovideny/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.stavoviZaposlenih = false;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
 //Administer 360 feedback
 router.put('/administerFeedback/:id', async(req, res) => {
 
@@ -1157,6 +1247,32 @@ router.put('/administerFeedback/:id', async(req, res) => {
         if (user) {
 
           user.availableTest.feedbackTest = true;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
+router.put('/administerFeedbackdeny/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.feedbackTest = false;
           user.save().then(user=>{
             return res.status(201).json({
                 success: true,
@@ -1200,6 +1316,32 @@ router.put('/administerBelbin/:id', async(req, res) => {
     // The data is valid and new we can register the user
 });
 
+
+router.put('/administerBelbindeny/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.belbinTest = false;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
 //Set LicniKpi
 router.put('/setLicniKpi/:id', async(req, res) => {
 
