@@ -45,7 +45,9 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  nadredjeni: [String],
+  nadredjeni: {
+    type: String,
+  },
   podredjeni: [String],
   istiNivo: [String],
   sektor: {

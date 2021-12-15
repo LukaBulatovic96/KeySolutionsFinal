@@ -147,6 +147,35 @@ router.get('/getAll',async (req,res)=>{
   });
 });
 
+//put nadredjeni
+router.put('/putNadredjeni/:id', async(req, res) => {
+
+    let nadredjeniName= req.body.nadredjeniName;
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.nadredjeni = nadredjeniName;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
+
 //put VQ
 router.put('/putVQ/:id', async(req, res) => {
 
@@ -1391,6 +1420,7 @@ router.put('/setKpiSamoProcena/:id', async(req, res) => {
           user.performanceEvaluation.kompanijski = kompanijski;
           user.performanceEvaluation.kompetence = kompetence;
           user.performanceEvaluation.finished = true;
+          console.log("Proso samoprocenu");
           user.save().then(user=>{
             return res.status(201).json({
                 success: true,
@@ -1410,6 +1440,7 @@ router.put('/setKpiSamoProcena/:id', async(req, res) => {
 //Set Performance evaluation podredjeni
 router.put('/setPerformanceEvaluationPodredjeni/:id', async(req, res) => {
 
+    console.log("uso u drugu");
     let licniData = {
       userId
     } = req.body;
