@@ -15,6 +15,9 @@ const KpiSchema = new Schema({
     },
     ponder:{
       type:Number
+    },
+    comment:{
+      type:String
     }
 });
 

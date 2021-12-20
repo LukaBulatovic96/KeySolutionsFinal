@@ -37,6 +37,9 @@ const LicniKpiSchema = new Schema({
     },
     rangiranje:{
       type:Number
+    },
+    comment:{
+      type:String
     }
 
 });
