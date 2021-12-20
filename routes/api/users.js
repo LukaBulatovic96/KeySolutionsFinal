@@ -1473,7 +1473,8 @@ router.put('/setKpiKonacnaProcena/:id', async(req, res) => {
     let licniData = {
       licniKpi,
       kompanijski,
-      kompetence
+      kompetence,
+      komentar,
     } = req.body;
 
     // Check for the existing name
@@ -1485,6 +1486,7 @@ router.put('/setKpiKonacnaProcena/:id', async(req, res) => {
           user.performanceEvaluation.licniKpi = licniKpi;
           user.performanceEvaluation.kompanijski = kompanijski;
           user.performanceEvaluation.kompetence = kompetence;
+          user.performanceEvaluation.komentar = komentar;
           user.save().then(user=>{
             return res.status(201).json({
                 success: true,

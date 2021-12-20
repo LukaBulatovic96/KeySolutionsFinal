@@ -53,6 +53,8 @@ const stavoviZaposlenihs= require('./routes/api/stavoviZaposlenihs');
 app.use('/api/stavoviZaposlenihs',stavoviZaposlenihs);
 const testLicnostis= require('./routes/api/testLicnostis');
 app.use('/api/testLicnostis',testLicnostis);
+const serviceAplication= require('./routes/api/serviceAplications');
+app.use('/api/serviceAplications',serviceAplication);
 
 app.get('*',(req,res)=>{
   res.sendFile(path.join(__dirname,'public/index.html'));

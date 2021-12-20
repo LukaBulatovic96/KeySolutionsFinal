@@ -14,7 +14,8 @@ const KpiSchemaUser = new Schema({
       type:Number
     },
     rangiranje:{
-      type:Number
+      type:Number,
+      default:0
     },
     ponder:{
       type:Number
@@ -1961,6 +1962,9 @@ ans92:{
       type:Boolean,
       default:false
     },
+    komentar:{
+      type:String
+    }
   },
   performanceEvaluationPodredjeni:[String],
 });
