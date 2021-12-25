@@ -32,4 +32,17 @@ router.post('/submit',(req,res)=>{
 });
 
 
+//////Delete ServiceAplication
+router.delete('/delete/:id', async(req, res) => {
+
+    // Check for the existing name
+    await ServiceAplication.deleteOne({
+        _id: req.params.id
+    }, function (err) {
+      if (err) return handleError(err);
+      // deleted at most one tank document
+    });
+
+});
+
 module.exports = router;

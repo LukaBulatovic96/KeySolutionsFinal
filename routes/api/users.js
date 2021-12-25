@@ -1134,6 +1134,60 @@ router.put('/administerVQ/:id', async(req, res) => {
     // The data is valid and new we can register the user
 });
 
+//Administer feedback report
+router.put('/administerFeedBackReport/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.feedBackReport = true;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
+//Administer feedback report
+router.put('/administerFeedBackReportDeny/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.feedBackReport = false;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
 router.put('/administerVQdeny/:id', async(req, res) => {
 
 
@@ -1375,8 +1429,11 @@ router.put('/administerBelbindeny/:id', async(req, res) => {
 router.put('/setLicniKpi/:id', async(req, res) => {
 
     let licniData = {
-      licniKpi
+      licniKpi,
+      lastEval
     } = req.body;
+
+
 
     // Check for the existing name
     await User.findOne({
@@ -1384,7 +1441,40 @@ router.put('/setLicniKpi/:id', async(req, res) => {
     }).then(async user => {
         if (user) {
 
-          user.performanceEvaluation.licniKpi = licniKpi;
+          if(lastEval==0){
+            return res.status(400).json({
+                msg: "Performance Evaluation wasnt allowed."
+            });
+          }else{
+          user.performanceEvaluation[lastEval].licniKpi = licniKpi;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+        }
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
+//ADD PERFORMANCE EVAL
+router.put('/addPerformanceEval/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          let emptyeval={};
+          user.performanceEvaluation.push(emptyeval);
           user.save().then(user=>{
             return res.status(201).json({
                 success: true,
@@ -1401,13 +1491,15 @@ router.put('/setLicniKpi/:id', async(req, res) => {
     // The data is valid and new we can register the user
 });
 
+
 //Set LicniKpi
 router.put('/setKpiSamoProcena/:id', async(req, res) => {
 
     let licniData = {
       licniKpi,
       kompanijski,
-      kompetence
+      kompetence,
+      lastEval
     } = req.body;
 
     // Check for the existing name
@@ -1416,10 +1508,10 @@ router.put('/setKpiSamoProcena/:id', async(req, res) => {
     }).then(async user => {
         if (user) {
 
-          user.performanceEvaluation.licniKpi = licniKpi;
-          user.performanceEvaluation.kompanijski = kompanijski;
-          user.performanceEvaluation.kompetence = kompetence;
-          user.performanceEvaluation.finished = true;
+          user.performanceEvaluation[lastEval].licniKpi = licniKpi;
+          user.performanceEvaluation[lastEval].kompanijski = kompanijski;
+          user.performanceEvaluation[lastEval].kompetence = kompetence;
+          user.performanceEvaluation[lastEval].finished = true;
           console.log("Proso samoprocenu");
           user.save().then(user=>{
             return res.status(201).json({
@@ -1450,7 +1542,15 @@ router.put('/setPerformanceEvaluationPodredjeni/:id', async(req, res) => {
         _id: req.params.id
     }).then(async user => {
         if (user) {
+          let flag=false;
+          for (var i = 0; i < user.performanceEvaluationPodredjeni.length; i++) {
+            if(licniData.userId==user.performanceEvaluationPodredjeni[i]){
+              flag=true;
+            }
+          }
+          if(!flag){
           user.performanceEvaluationPodredjeni.push(licniData.userId);
+          }
           user.save().then(user=>{
             return res.status(201).json({
                 success: true,
@@ -1475,6 +1575,8 @@ router.put('/setKpiKonacnaProcena/:id', async(req, res) => {
       kompanijski,
       kompetence,
       komentar,
+      lastEval,
+      date
     } = req.body;
 
     // Check for the existing name
@@ -1483,10 +1585,11 @@ router.put('/setKpiKonacnaProcena/:id', async(req, res) => {
     }).then(async user => {
         if (user) {
 
-          user.performanceEvaluation.licniKpi = licniKpi;
-          user.performanceEvaluation.kompanijski = kompanijski;
-          user.performanceEvaluation.kompetence = kompetence;
-          user.performanceEvaluation.komentar = komentar;
+          user.performanceEvaluation[lastEval].licniKpi = licniKpi;
+          user.performanceEvaluation[lastEval].kompanijski = kompanijski;
+          user.performanceEvaluation[lastEval].kompetence = kompetence;
+          user.performanceEvaluation[lastEval].komentar = komentar;
+          user.performanceEvaluation[lastEval].date=date;
           user.save().then(user=>{
             return res.status(201).json({
                 success: true,

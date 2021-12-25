@@ -44,6 +44,23 @@ const LicniKpiSchema = new Schema({
 
 });
 
+const PerformanceEvaluationSchema = new Schema({
+  kompetence:[KpiSchemaUser],
+  kompanijski:[KpiSchemaUser],
+  licniKpi:[LicniKpiSchema],
+  finished:{
+    type:Boolean,
+    default:false
+  },
+  komentar:{
+    type:String
+  },
+  date:{
+    type:String,
+    default:""
+  }
+});
+
 const UserSchema = new Schema({
   name:{
     type: String,
@@ -99,6 +116,10 @@ const UserSchema = new Schema({
       type: Boolean,
       default: true
     },
+    feedBackReport:{
+      type: Boolean,
+      default: false
+    }
   },
   vqTest:{
     result:{
@@ -1957,18 +1978,7 @@ ans92:{
     type: String,
     required:true
   },
-  performanceEvaluation:{
-    kompetence:[KpiSchemaUser],
-    kompanijski:[KpiSchemaUser],
-    licniKpi:[LicniKpiSchema],
-    finished:{
-      type:Boolean,
-      default:false
-    },
-    komentar:{
-      type:String
-    }
-  },
+  performanceEvaluation:[PerformanceEvaluationSchema],
   performanceEvaluationPodredjeni:[String],
 });
 
