@@ -55,6 +55,9 @@ const PerformanceEvaluationSchema = new Schema({
   komentar:{
     type:String
   },
+  komentarSamoProcena:{
+    type:String
+  },
   date:{
     type:String,
     default:""

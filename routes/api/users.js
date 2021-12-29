@@ -1500,7 +1500,8 @@ router.put('/setKpiSamoProcena/:id', async(req, res) => {
       licniKpi,
       kompanijski,
       kompetence,
-      lastEval
+      lastEval,
+      komentarSamoProcena,
     } = req.body;
 
     // Check for the existing name
@@ -1512,6 +1513,7 @@ router.put('/setKpiSamoProcena/:id', async(req, res) => {
           user.performanceEvaluation[lastEval].licniKpi = licniKpi;
           user.performanceEvaluation[lastEval].kompanijski = kompanijski;
           user.performanceEvaluation[lastEval].kompetence = kompetence;
+          user.performanceEvaluation[lastEval].komentarSamoProcena = komentarSamoProcena;
           user.performanceEvaluation[lastEval].finished = true;
           console.log("Proso samoprocenu");
           user.save().then(user=>{
