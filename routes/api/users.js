@@ -1441,7 +1441,8 @@ router.put('/setLicniKpi/:id', async(req, res) => {
     }).then(async user => {
         if (user) {
 
-          if(lastEval==0){
+          if(lastEval==-1){
+
             return res.status(400).json({
                 msg: "Performance Evaluation wasnt allowed."
             });
