@@ -1537,7 +1537,7 @@ router.put('/setPerformanceEvaluationPodredjeni/:id', async(req, res) => {
 
     console.log("uso u drugu");
     let licniData = {
-      userId
+      userID
     } = req.body;
 
     // Check for the existing name
@@ -1547,12 +1547,12 @@ router.put('/setPerformanceEvaluationPodredjeni/:id', async(req, res) => {
         if (user) {
           let flag=false;
           for (var i = 0; i < user.performanceEvaluationPodredjeni.length; i++) {
-            if(licniData.userId==user.performanceEvaluationPodredjeni[i]){
+            if(licniData.userID==user.performanceEvaluationPodredjeni[i]){
               flag=true;
             }
           }
           if(!flag){
-          user.performanceEvaluationPodredjeni.push(licniData.userId);
+          user.performanceEvaluationPodredjeni.push(licniData.userID);
           }
           user.save().then(user=>{
             return res.status(201).json({
