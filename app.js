@@ -55,6 +55,8 @@ const testLicnostis= require('./routes/api/testLicnostis');
 app.use('/api/testLicnostis',testLicnostis);
 const serviceAplication= require('./routes/api/serviceAplications');
 app.use('/api/serviceAplications',serviceAplication);
+const mesecPlanner= require('./routes/api/mesecPlaners');
+app.use('/api/mesecPlaners',mesecPlanner);
 
 app.get('*',(req,res)=>{
   res.sendFile(path.join(__dirname,'public/index.html'));
