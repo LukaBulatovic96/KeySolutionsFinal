@@ -11,6 +11,9 @@ const DanSchema = new Schema({
     komentar:{
       type:String
     },
+    sastanci:{
+      type:String
+    }
 });
 
 const MesecPlannerSchema = new Schema({
