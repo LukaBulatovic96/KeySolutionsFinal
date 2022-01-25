@@ -95,6 +95,10 @@ const UserSchema = new Schema({
     required:true
   },
   availableTest:{
+    kpiPregled:{
+      type: Boolean,
+      default: false
+    },
     vqTest:{
       type: Boolean,
       default: false

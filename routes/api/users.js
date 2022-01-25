@@ -13,6 +13,41 @@ const User = require('../../models/User');
 */
 
 
+//CHANGE PASSWORD
+router.put('/changePass',(req,res)=>{
+  let {
+     username,
+     password,
+    } = req.body
+
+    console.log("usao uopste");
+
+    //Check for the unique email
+    User.findOne({
+      username: username
+    }).then(user =>{
+      console.log("Naso: "+user.username);
+      if(user){
+        console.log("uso u if");
+        bcrypt.genSalt(10,(err,salt)=>{
+          console.log("uso u gen salt");
+          bcrypt.hash(password, salt, (err,hash)=>{
+            if(err) throw err;
+            user.password= hash;
+            console.log("userpass: "+hash);
+            user.save().then(user=>{
+              return res.status(201).json({
+                success:true,
+                msg:"User is now saved"
+              });
+            });
+          });
+        });
+      }
+    })
+});
+
+
 router.post('/register',(req,res)=>{
   let {
      name,
@@ -1133,6 +1168,62 @@ router.put('/administerVQ/:id', async(req, res) => {
     });
     // The data is valid and new we can register the user
 });
+
+//Administer Pregled Kpi
+router.put('/administerPregledKpi/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.kpiPregled = true;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
+//Administer Pregled Kpi deny
+router.put('/administerPregledKpiDeny/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.kpiPregled = false;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
+
 
 //Administer feedback report
 router.put('/administerFeedBackReport/:id', async(req, res) => {
