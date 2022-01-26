@@ -182,6 +182,45 @@ router.get('/getAll',async (req,res)=>{
   });
 });
 
+//update USEr
+router.put('/updateUser/:id', async(req, res) => {
+
+    let name = req.body.name;
+    let email = req.body.email;
+    let username = req.body.username;
+    let sektor = req.body.sektor;
+    let radnoMesto = req.body.radnoMesto;
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.name = name;
+          user.email = email;
+          user.username = username;
+          user.sektor = sektor;
+          user.radnoMesto = radnoMesto;
+
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
+
+
 //put nadredjeni
 router.put('/putNadredjeni/:id', async(req, res) => {
 
@@ -194,6 +233,7 @@ router.put('/putNadredjeni/:id', async(req, res) => {
         if (user) {
 
           user.nadredjeni = nadredjeniName;
+
           user.save().then(user=>{
             return res.status(201).json({
                 success: true,
