@@ -1,6 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+const TaskSchema = new Schema({
+    checked:{
+      type:Boolean,
+      default:false
+    },
+    name:{
+      type:String
+    },
+
+});
+
+
 const DanSchema = new Schema({
     mesec:{
       type:String
@@ -9,7 +22,10 @@ const DanSchema = new Schema({
       type:Number
     },
     komentar:{
-      type:String
+      milenko:[TaskSchema],
+      natasa:[TaskSchema],
+      zorica:[TaskSchema],
+      milica:[TaskSchema],
     },
     sastanci:[String]
 });
