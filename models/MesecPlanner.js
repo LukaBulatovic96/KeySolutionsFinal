@@ -13,6 +13,18 @@ const TaskSchema = new Schema({
 
 });
 
+const SastanakSchema = new Schema({
+  name:{
+    type:String
+  },
+  startTime:{
+    type:String
+  },
+  endTime:{
+    type:String
+  }
+
+});
 
 const DanSchema = new Schema({
     mesec:{
@@ -27,7 +39,7 @@ const DanSchema = new Schema({
       zorica:[TaskSchema],
       milica:[TaskSchema],
     },
-    sastanci:[String]
+    sastanci:[SastanakSchema]
 });
 
 const MesecPlannerSchema = new Schema({

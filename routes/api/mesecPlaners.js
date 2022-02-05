@@ -46,7 +46,7 @@ router.put('/putMesec/:id', async(req, res) => {
     }).then(async planner => {
         if (planner) {
 
-
+        
           planner.dani=dani;
 
 
