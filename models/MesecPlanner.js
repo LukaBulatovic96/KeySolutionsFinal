@@ -50,7 +50,12 @@ const MesecPlannerSchema = new Schema({
   godina:{
     type:Number
   },
-  dani:[DanSchema]
+  dani:[DanSchema],
+  locked:{
+    type:Boolean,
+    default:false,
+  }
+
 
 });
 
