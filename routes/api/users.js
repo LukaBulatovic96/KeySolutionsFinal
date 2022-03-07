@@ -1209,6 +1209,60 @@ router.put('/administerVQ/:id', async(req, res) => {
     // The data is valid and new we can register the user
 });
 
+//Administer Procena
+router.put('/administerProcena/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.procenaPregled = true;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
+//Administer Procena deny
+router.put('/administerProcenaDeny/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.procenaPregled = false;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
 //Administer Pregled Kpi
 router.put('/administerPregledKpi/:id', async(req, res) => {
 

@@ -59,6 +59,8 @@ const mesecPlanner= require('./routes/api/mesecPlaners');
 app.use('/api/mesecPlaners',mesecPlanner);
 const faktura= require('./routes/api/faktures');
 app.use('/api/faktures',faktura);
+const psiholoskaProcena= require('./routes/api/psiholoskaProcenas');
+app.use('/api/psiholoskaProcenas',psiholoskaProcena);
 
 app.get('*',(req,res)=>{
   res.sendFile(path.join(__dirname,'public/index.html'));

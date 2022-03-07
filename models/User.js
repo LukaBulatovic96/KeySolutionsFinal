@@ -95,6 +95,10 @@ const UserSchema = new Schema({
     required:true
   },
   availableTest:{
+    procenaPregled:{
+      type:Boolean,
+      default:false
+    },
     kpiPregled:{
       type: Boolean,
       default: false
