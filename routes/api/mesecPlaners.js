@@ -33,11 +33,12 @@ router.post('/submit',(req,res)=>{
 });
 });
 
-router.put('/lockMesec/:id', async(req, res) => {
+router.post('/lockMesec/:id', async(req, res) => {
 
   let {
     lock
    } = req.body;
+
 
     // Check for the existing name
     await MesecPlanner.findOne({
