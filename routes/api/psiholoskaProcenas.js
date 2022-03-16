@@ -17,6 +17,9 @@ router.post('/submit',(req,res)=>{
      negativno,
      misljenjePsihologa,
      idUser,
+     vqHeader,
+     vqBody,
+     savedVq,
    } = req.body;
 
 
@@ -31,6 +34,11 @@ router.post('/submit',(req,res)=>{
        procena.pozitivno= pozitivno;
        procena.negativno= negativno;
        procena.misljenjePsihologa= misljenjePsihologa;
+       procena.vqHeader= vqHeader;
+       procena.vqBody= vqBody;
+       procena.savedVq= savedVq;
+
+
 
        procena.save().then(procena=>{
              return res.status(201).json({
@@ -40,13 +48,16 @@ router.post('/submit',(req,res)=>{
 
    });
      }else{
-       
+
        let newPsiholoskaProcena = new PsiholoskaProcena({
          opstaOcena,
          pozitivno,
          negativno,
          misljenjePsihologa,
          idUser,
+         vqHeader,
+         vqBody,
+         savedVq,
        });
 
        newPsiholoskaProcena.save().then(newPsiholoskaProcena=>{

@@ -12,6 +12,15 @@ const PsiholoskaProcenaSchema = new Schema({
   },
   idUser:{
     type:String
+  },
+  vqHeader:{
+    type:String
+  },
+  vqBody:{
+    type:String
+  },
+  savedVq:{
+    type:Boolean
   }
 
 });
