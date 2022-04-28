@@ -21,6 +21,48 @@ const KpiSchema = new Schema({
     }
 });
 
+const UpitnikEdukacijaSchema = new Schema({
+    ans1:{
+      type: Number
+    },
+    ans2:{
+      type: Number
+    },
+    ans3:{
+      type: Number
+    },
+    ans4:{
+      type: Number
+    },
+    ans5:{
+      type: Number
+    },
+    ans6:{
+      type: Number
+    },
+    ans7:{
+      type: Number
+    },
+    ans8:{
+      type: Number
+    },
+    ans9:{
+      type: Number
+    },
+    ans10:{
+      type: String
+    },
+    ans11:{
+      type: String
+    },
+    active:{
+      type: Boolean
+    },
+    submisions:{
+      type: Number
+    }
+});
+
 const CompanySchema = new Schema({
   name:{
     type: String,
@@ -446,6 +488,7 @@ const CompanySchema = new Schema({
 
   },
   sektori:[SectorSchema],
+  upitnikEdukacija:[UpitnikEdukacijaSchema],
   performanceEvaluation:{
     kompetence:[KpiSchema],
     kompanijski:[KpiSchema],

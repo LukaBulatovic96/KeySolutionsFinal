@@ -38,6 +38,78 @@ router.get('/getAll',async (req,res)=>{
   });
 });
 
+// DODAJ PROCENU EDUKACIJE
+router.put('/putEducationEval/:company', async(req, res) => {
+
+
+    await Company.findOne({
+        name: req.params.company
+    }).then(async company => {
+        if (company) {
+
+              var edukacija = {
+                ans1: 0,
+                ans2: 0,
+                ans3: 0,
+                ans4: 0,
+                ans5: 0,
+                ans6: 0,
+                ans7: 0,
+                ans8: 0,
+                ans9: 0,
+                ans10: "",
+                ans11: "",
+                submisions:0,
+                active:true,
+              };
+
+          company.upitnikEdukacija.push(edukacija);
+          company.save().then(company=>{
+            return res.status(201).json({
+                success: true,
+                msg: "company saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "company doesn't exist."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
+
+// POPUNI PROCENU EDUKACIJE
+router.put('/putEducationEvalUser/:company', async(req, res) => {
+
+    let {
+     procena,
+    } = req.body
+
+    await Company.findOne({
+        name: req.params.company
+    }).then(async company => {
+        if (company) {
+
+          company.upitnikEdukacija[company.upitnikEdukacija.length-1]=procena;
+          company.save().then(company=>{
+            return res.status(201).json({
+                success: true,
+                msg: "company saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "company doesn't exist."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
 
 router.put('/putStavoviZaposlenih/:company', async(req, res) => {
 

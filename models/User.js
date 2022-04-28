@@ -65,6 +65,9 @@ const PerformanceEvaluationSchema = new Schema({
 });
 
 const UserSchema = new Schema({
+  upitnikFlag:{
+    type:Boolean
+  },
   name:{
     type: String,
     required: true
@@ -95,6 +98,10 @@ const UserSchema = new Schema({
     required:true
   },
   availableTest:{
+    procenaEdukacije:{
+      type:Boolean,
+      default:false
+    },
     procenaPregled:{
       type:Boolean,
       default:false

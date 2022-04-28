@@ -1556,7 +1556,58 @@ router.put('/administerFeedbackdeny/:id', async(req, res) => {
     });
     // The data is valid and new we can register the user
 });
+//Administer Procena Edukacije
+router.put('/administerProcenaEdukacije/:id', async(req, res) => {
 
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.procenaEdukacije = true;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+//Administer Procena Edukacije Deny
+router.put('/administerProcenaEdukacijeDeny/:id', async(req, res) => {
+
+
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          user.availableTest.procenaEdukacije = false;
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
 //Administer Belbin
 router.put('/administerBelbin/:id', async(req, res) => {
 
