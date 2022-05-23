@@ -1729,6 +1729,46 @@ router.put('/addPerformanceEval/:id', async(req, res) => {
 });
 
 
+//ADD PERFORMANCE EVAL LIcni
+router.put('/addPerformanceEvalLicni/:id', async(req, res) => {
+
+  let kpiData={
+    licniKpi
+  }=req.body;
+  console.log(licniKpi);
+    // Check for the existing name
+    await User.findOne({
+        _id: req.params.id
+    }).then(async user => {
+        if (user) {
+
+          let emptyeval={};
+          user.performanceEvaluation.push(emptyeval);
+          for (var i = 0; i < licniKpi.length; i++) {
+            let tempLicni={
+              name:licniKpi[i].name,
+              ponder:licniKpi[i].ponder,
+              comment:licniKpi[i].comment,
+            }
+              user.performanceEvaluation[user.performanceEvaluation.length-1].licniKpi.push(tempLicni);
+          }
+
+          user.save().then(user=>{
+            return res.status(201).json({
+                success: true,
+                msg: "user saved."
+            });
+          })
+
+        }else{
+          return res.status(400).json({
+              msg: "User doesn't exists."
+          });
+        }
+    });
+    // The data is valid and new we can register the user
+});
+
 //Set LicniKpi
 router.put('/setKpiSamoProcena/:id', async(req, res) => {
 
