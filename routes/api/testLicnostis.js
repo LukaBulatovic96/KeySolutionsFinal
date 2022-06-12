@@ -10,100 +10,112 @@ const TestLicnosti = require('../../models/TestLicnosti');
 
 //GetAll vqtests
 router.get('/getAll',async (req,res)=>{
-  TestLicnosti.find({}).then(testLicnostis=>{
-     return  res.status(200).json(testLicnostis);
-  });
+  try {
+    TestLicnosti.find({}).then(testLicnostis=>{
+       return  res.status(200).json(testLicnostis);
+    });
+  } catch (e) {
+
+  } finally {
+
+  }
 });
 
 router.post('/submit',(req,res)=>{
-  let {
-      N1,
-      N2,
-      N3,
-      N4,
-      N5,
-      N6,
+  try {
+    let {
+        N1,
+        N2,
+        N3,
+        N4,
+        N5,
+        N6,
 
-      E1,
-      E2,
-      E3,
-      E4,
-      E5,
-      E6,
+        E1,
+        E2,
+        E3,
+        E4,
+        E5,
+        E6,
 
-      O1,
-      O2,
-      O3,
-      O4,
-      O5,
-      O6,
+        O1,
+        O2,
+        O3,
+        O4,
+        O5,
+        O6,
 
-      U1,
-      U2,
-      U3,
-      U4,
-      U5,
-      U6,
+        U1,
+        U2,
+        U3,
+        U4,
+        U5,
+        U6,
 
-      S1,
-      S2,
-      S3,
-      S4,
-      S5,
-      S6,
-      pol,
-      userId
-   } = req.body;
+        S1,
+        S2,
+        S3,
+        S4,
+        S5,
+        S6,
+        pol,
+        userId
+     } = req.body;
 
 
-    let newTestLicnosti = new TestLicnosti({
-      N1,
-      N2,
-      N3,
-      N4,
-      N5,
-      N6,
+      let newTestLicnosti = new TestLicnosti({
+        N1,
+        N2,
+        N3,
+        N4,
+        N5,
+        N6,
 
-      E1,
-      E2,
-      E3,
-      E4,
-      E5,
-      E6,
+        E1,
+        E2,
+        E3,
+        E4,
+        E5,
+        E6,
 
-      O1,
-      O2,
-      O3,
-      O4,
-      O5,
-      O6,
+        O1,
+        O2,
+        O3,
+        O4,
+        O5,
+        O6,
 
-      U1,
-      U2,
-      U3,
-      U4,
-      U5,
-      U6,
+        U1,
+        U2,
+        U3,
+        U4,
+        U5,
+        U6,
 
-      S1,
-      S2,
-      S3,
-      S4,
-      S5,
-      S6,
-      pol,
+        S1,
+        S2,
+        S3,
+        S4,
+        S5,
+        S6,
+        pol,
 
-      userId
+        userId
 
-    });
+      });
 
-    newTestLicnosti.save().then(newTestLicnosti=>{
-          return res.status(201).json({
-            success:true,
-            msg:"Test Licnosti is saved"
-          });
+      newTestLicnosti.save().then(newTestLicnosti=>{
+            return res.status(201).json({
+              success:true,
+              msg:"Test Licnosti is saved"
+            });
 
-});
+  });
+  } catch (e) {
+
+  } finally {
+
+  }
 });
 
 

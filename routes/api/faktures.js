@@ -4,34 +4,22 @@ const Faktura = require('../../models/Faktura');
 
 //GetAll fakture
 router.get('/getAll',async (req,res)=>{
-  Faktura.find({}).then(fakture=>{
-     return  res.status(200).json(fakture);
-  });
+  try {
+    Faktura.find({}).then(fakture=>{
+       return  res.status(200).json(fakture);
+    });
+  } catch (e) {
+
+  } finally {
+
+  }
 });
 
 
 router.post('/submit',(req,res)=>{
 
-  let {
-    type,
-    platilac,
-    pib,
-    mib,
-    imeKompanije,
-    adresa,
-    drzava,
-    datumIzdavanja,
-    datumPrometa,
-    valuta,
-    nazivUsluge,
-    cenaUsluge,
-    iznos,
-    slovima,
-    racunBroj,
-    racunGodina,
-   } = req.body;
-
-    let newFaktura = new Faktura({
+  try {
+    let {
       type,
       platilac,
       pib,
@@ -48,15 +36,40 @@ router.post('/submit',(req,res)=>{
       slovima,
       racunBroj,
       racunGodina,
-    });
+     } = req.body;
 
-    newFaktura.save().then(newFaktura=>{
-          return res.status(201).json({
-            success:true,
-            msg:"MesecPlanner is saved"
-          });
+      let newFaktura = new Faktura({
+        type,
+        platilac,
+        pib,
+        mib,
+        imeKompanije,
+        adresa,
+        drzava,
+        datumIzdavanja,
+        datumPrometa,
+        valuta,
+        nazivUsluge,
+        cenaUsluge,
+        iznos,
+        slovima,
+        racunBroj,
+        racunGodina,
+      });
 
-});
+      newFaktura.save().then(newFaktura=>{
+            return res.status(201).json({
+              success:true,
+              msg:"MesecPlanner is saved"
+            });
+
+  });
+  } catch (e) {
+
+  } finally {
+
+  }
+
 });
 
 module.exports = router;
