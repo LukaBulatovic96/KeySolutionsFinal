@@ -15,7 +15,7 @@ const User = require('../../models/User');
 
 //CHANGE PASSWORD
 router.put('/changePass',(req,res)=>{
-
+  req.setTimeout(5*1000);
   try {
 
     let {
@@ -61,6 +61,7 @@ router.put('/changePass',(req,res)=>{
 
 
 router.post('/register',(req,res)=>{
+  req.setTimeout(5*1000);
   try {
     let {
        name,
@@ -135,7 +136,7 @@ router.post('/register',(req,res)=>{
 */
 //////Delete user
 router.delete('/deleteUser/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       // Check for the existing name
       await User.deleteOne({
@@ -154,6 +155,7 @@ router.delete('/deleteUser/:id', async(req, res) => {
 //////////
 
 router.post('/login',(req,res)=>{
+  req.setTimeout(5*1000);
   try {
     User.findOne({username: req.body.username}).then(user=>{
       if(!user){
@@ -207,6 +209,7 @@ router.post('/login',(req,res)=>{
 
 //GetAll Users
 router.get('/getAll',async (req,res)=>{
+  req.setTimeout(10*1000);
   try {
     User.find({}).then(users=>{
        return  res.status(200).json(users);
@@ -220,7 +223,7 @@ router.get('/getAll',async (req,res)=>{
 
 //update USEr
 router.put('/updateUser/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       let name = req.body.name;
       let email = req.body.email;
@@ -265,7 +268,7 @@ router.put('/updateUser/:id', async(req, res) => {
 
 //put nadredjeni
 router.put('/putNadredjeni/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       let nadredjeniName= req.body.nadredjeniName;
 
@@ -301,7 +304,7 @@ router.put('/putNadredjeni/:id', async(req, res) => {
 
 //put VQ
 router.put('/putVQ/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       let vqData= {
         result:req.body.result,
@@ -338,7 +341,7 @@ router.put('/putVQ/:id', async(req, res) => {
 
 //get Users from same company
 router.get('/getCollegues/:company', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       // Check for the existing name
       await User.find({
@@ -363,6 +366,7 @@ router.get('/getCollegues/:company', async(req, res) => {
 router.get('/profile', passport.authenticate('jwt',{
   session:false
 }), (req,res) => {
+  req.setTimeout(5*1000);
   try {
     return res.json({
       user:req.user
@@ -376,7 +380,7 @@ router.get('/profile', passport.authenticate('jwt',{
 
 // put test licnosti
 router.put('/putTestLicnosti/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     let {
         N1,
@@ -489,7 +493,7 @@ router.put('/putTestLicnosti/:id', async(req, res) => {
 });
 
 router.put('/finishedStavoviZaposlenih/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       // Check for the existing name
       await User.findOne({
@@ -519,7 +523,7 @@ router.put('/finishedStavoviZaposlenih/:id', async(req, res) => {
 
 //put 360 FeedBack Result
 router.put('/putFeedBack/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       let = {
         ans1,
@@ -1231,7 +1235,7 @@ router.put('/putFeedBack/:id', async(req, res) => {
 
 //put BElbin
 router.put('/putBelbin/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       let belbinData= {
         SO:req.body.SO,
@@ -1274,7 +1278,7 @@ router.put('/putBelbin/:id', async(req, res) => {
 
 //Administer VQ
 router.put('/administerVQ/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
 
     try {
       // Check for the existing name
@@ -1308,7 +1312,7 @@ router.put('/administerVQ/:id', async(req, res) => {
 //Administer Procena
 router.put('/administerProcena/:id', async(req, res) => {
 
-
+  req.setTimeout(5*1000);
     try {
       // Check for the existing name
       await User.findOne({
@@ -1341,7 +1345,7 @@ router.put('/administerProcena/:id', async(req, res) => {
 //Administer Procena deny
 router.put('/administerProcenaDeny/:id', async(req, res) => {
 
-
+  req.setTimeout(5*1000);
     try {
       // Check for the existing name
       await User.findOne({
@@ -1373,7 +1377,7 @@ router.put('/administerProcenaDeny/:id', async(req, res) => {
 
 //Administer Pregled Kpi
 router.put('/administerPregledKpi/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1406,7 +1410,7 @@ router.put('/administerPregledKpi/:id', async(req, res) => {
 
 //Administer Pregled Kpi deny
 router.put('/administerPregledKpiDeny/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1441,7 +1445,7 @@ router.put('/administerPregledKpiDeny/:id', async(req, res) => {
 
 //Administer feedback report
 router.put('/administerFeedBackReport/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
 
         // Check for the existing name
@@ -1474,7 +1478,7 @@ router.put('/administerFeedBackReport/:id', async(req, res) => {
 
 //Administer feedback report
 router.put('/administerFeedBackReportDeny/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1506,7 +1510,7 @@ router.put('/administerFeedBackReportDeny/:id', async(req, res) => {
 });
 
 router.put('/administerVQdeny/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1538,7 +1542,7 @@ router.put('/administerVQdeny/:id', async(req, res) => {
 });
 //Administer TestLicnosti
 router.put('/administerTL/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1570,7 +1574,7 @@ router.put('/administerTL/:id', async(req, res) => {
 });
 
 router.put('/administerTLdeny/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1603,7 +1607,7 @@ router.put('/administerTLdeny/:id', async(req, res) => {
 
 //Administer Stavovi
 router.put('/administerStavovi/:id', async(req, res) => {
-
+ req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1635,7 +1639,7 @@ router.put('/administerStavovi/:id', async(req, res) => {
 });
 
 router.put('/administerStavovideny/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1669,7 +1673,7 @@ router.put('/administerStavovideny/:id', async(req, res) => {
 
 //Administer 360 feedback
 router.put('/administerFeedback/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1701,7 +1705,7 @@ router.put('/administerFeedback/:id', async(req, res) => {
 });
 
 router.put('/administerFeedbackdeny/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1733,7 +1737,7 @@ router.put('/administerFeedbackdeny/:id', async(req, res) => {
 });
 //Administer Procena Edukacije
 router.put('/administerProcenaEdukacije/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1765,7 +1769,7 @@ router.put('/administerProcenaEdukacije/:id', async(req, res) => {
 });
 //Administer Procena Edukacije Deny
 router.put('/administerProcenaEdukacijeDeny/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1797,7 +1801,7 @@ router.put('/administerProcenaEdukacijeDeny/:id', async(req, res) => {
 });
 //Administer Belbin
 router.put('/administerBelbin/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1830,7 +1834,7 @@ router.put('/administerBelbin/:id', async(req, res) => {
 
 
 router.put('/administerBelbindeny/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1862,7 +1866,7 @@ router.put('/administerBelbindeny/:id', async(req, res) => {
 });
 //Set LicniKpi
 router.put('/setLicniKpi/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       let licniData = {
         licniKpi,
@@ -1907,7 +1911,7 @@ router.put('/setLicniKpi/:id', async(req, res) => {
 
 //ADD PERFORMANCE EVAL
 router.put('/addPerformanceEval/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await User.findOne({
@@ -1942,7 +1946,7 @@ router.put('/addPerformanceEval/:id', async(req, res) => {
 
 //ADD PERFORMANCE EVAL LIcni
 router.put('/addPerformanceEvalLicni/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     let kpiData={
       licniKpi
@@ -1988,7 +1992,7 @@ router.put('/addPerformanceEvalLicni/:id', async(req, res) => {
 
 //Set LicniKpi
 router.put('/setKpiSamoProcena/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       let licniData = {
         licniKpi,
@@ -2033,7 +2037,7 @@ router.put('/setKpiSamoProcena/:id', async(req, res) => {
 
 //Set Performance evaluation podredjeni
 router.put('/setPerformanceEvaluationPodredjeni/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
 
     console.log("uso u drugu");
@@ -2085,7 +2089,7 @@ router.put('/setPerformanceEvaluationPodredjeni/:id', async(req, res) => {
 
 //Set KonacnaProcena
 router.put('/setKpiKonacnaProcena/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       let licniData = {
         licniKpi,

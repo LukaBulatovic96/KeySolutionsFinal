@@ -10,6 +10,7 @@ const TestLicnosti = require('../../models/TestLicnosti');
 
 //GetAll vqtests
 router.get('/getAll',async (req,res)=>{
+  req.setTimeout(5*1000);
   try {
     TestLicnosti.find({}).then(testLicnostis=>{
        return  res.status(200).json(testLicnostis);
@@ -22,6 +23,7 @@ router.get('/getAll',async (req,res)=>{
 });
 
 router.post('/submit',(req,res)=>{
+  req.setTimeout(5*1000);
   try {
     let {
         N1,

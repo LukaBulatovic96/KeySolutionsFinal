@@ -5,6 +5,7 @@ const ServiceAplication = require('../../models/ServiceAplication');
 
 //GetAll applications
 router.get('/getAll',async (req,res)=>{
+  req.setTimeout(5*1000);
   try {
     ServiceAplication.find({}).then(serviceAplications=>{
        return  res.status(200).json(serviceAplications);
@@ -17,7 +18,7 @@ router.get('/getAll',async (req,res)=>{
 });
 
 router.post('/submit',(req,res)=>{
-
+  req.setTimeout(5*1000);
   try {
     let {
        formular
@@ -46,7 +47,7 @@ router.post('/submit',(req,res)=>{
 
 //////Delete ServiceAplication
 router.delete('/delete/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     // Check for the existing name
     await ServiceAplication.deleteOne({

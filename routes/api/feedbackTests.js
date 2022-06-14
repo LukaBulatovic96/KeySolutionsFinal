@@ -4,6 +4,7 @@ const FeedBackTest = require('../../models/FeedBackTest');
 
 //GetAll 360tests
 router.get('/getAll',async (req,res)=>{
+  req.setTimeout(5*1000);
   try {
     FeedBackTest.find({}).then(feedbackTests=>{
        return  res.status(200).json(feedbackTests);
@@ -16,6 +17,7 @@ router.get('/getAll',async (req,res)=>{
 });
 
 router.post('/submit',(req,res)=>{
+  req.setTimeout(5*1000);
   try {
     let {
        ans1,

@@ -4,6 +4,7 @@ const StavoviZaposlenih = require('../../models/StavoviZaposlenih');
 
 //GetAll 360tests
 router.get('/getAll',async (req,res)=>{
+  req.setTimeout(5*1000);
   try {
     StavoviZaposlenih.find({}).then(stavoviZaposlenih=>{
        return  res.status(200).json(stavoviZaposlenih);
@@ -16,6 +17,7 @@ router.get('/getAll',async (req,res)=>{
 });
 
 router.post('/submit',(req,res)=>{
+  req.setTimeout(5*1000);
   try {
     let {
        name,

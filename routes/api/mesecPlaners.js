@@ -5,6 +5,7 @@ const MesecPlanner = require('../../models/MesecPlanner');
 
 //GetAll meseci
 router.get('/getAll',async (req,res)=>{
+  req.setTimeout(5*1000);
   try {
     MesecPlanner.find({}).then(serviceAplications=>{
        return  res.status(200).json(serviceAplications);
@@ -17,7 +18,7 @@ router.get('/getAll',async (req,res)=>{
 });
 
 router.post('/submit',(req,res)=>{
-
+  req.setTimeout(5*1000);
   try {
     let {
        mesec,
@@ -46,7 +47,7 @@ router.post('/submit',(req,res)=>{
 });
 
 router.post('/lockMesec/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     let {
       lock
@@ -86,7 +87,7 @@ router.post('/lockMesec/:id', async(req, res) => {
 });
 
 router.put('/putMesec/:id', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     let {
       dani

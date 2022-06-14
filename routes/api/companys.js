@@ -3,6 +3,7 @@ const router = express.Router();
 const Company = require('../../models/Company');
 
 router.post('/register',(req,res)=>{
+  req.setTimeout(5*1000);
   try {
     let {
        name
@@ -39,6 +40,7 @@ router.post('/register',(req,res)=>{
 });
 
 router.get('/getAll',async (req,res)=>{
+  req.setTimeout(5*1000);
   try {
     Company.find({}).then(companys=>{
        return  res.status(200).json(companys);
@@ -52,7 +54,7 @@ router.get('/getAll',async (req,res)=>{
 
 // DODAJ PROCENU EDUKACIJE
 router.put('/putEducationEval/:company', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     await Company.findOne({
         name: req.params.company
@@ -101,7 +103,7 @@ router.put('/putEducationEval/:company', async(req, res) => {
 
 // POPUNI PROCENU EDUKACIJE
 router.put('/putEducationEvalUser/:company', async(req, res) => {
-
+  req.setTimeout(5*1000);
     try {
       let {
        procena,
@@ -137,6 +139,7 @@ router.put('/putEducationEvalUser/:company', async(req, res) => {
 
 router.put('/putStavoviZaposlenih/:company', async(req, res) => {
 
+  req.setTimeout(5*1000);
   try {
     let {
         ans11,
@@ -441,7 +444,7 @@ router.put('/putStavoviZaposlenih/:company', async(req, res) => {
 
 
 router.put('/putSector/:company', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     let {
         sectorName
@@ -495,7 +498,7 @@ router.put('/putSector/:company', async(req, res) => {
 
 
 router.put('/putRM', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     let {
         companyName,
@@ -556,7 +559,7 @@ router.put('/putRM', async(req, res) => {
 
 
 router.put('/putKpi/:company', async(req, res) => {
-
+  req.setTimeout(5*1000);
   try {
     let {
         kompetence,

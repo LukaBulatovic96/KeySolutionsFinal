@@ -10,6 +10,7 @@ const VQTest = require('../../models/VQTest');
 
 //GetAll vqtests
 router.get('/getAll',async (req,res)=>{
+  req.setTimeout(5*1000);
   try {
     VQTest.find({}).then(vqtests=>{
        return  res.status(200).json(vqtests);
@@ -22,6 +23,7 @@ router.get('/getAll',async (req,res)=>{
 });
 
 router.post('/submit',(req,res)=>{
+  req.setTimeout(5*1000);
   try {
     let {
        ans1,
