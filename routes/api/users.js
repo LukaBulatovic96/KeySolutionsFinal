@@ -1276,6 +1276,76 @@ router.put('/putBelbin/:id', async(req, res) => {
     }
 });
 
+//put putProcenaKandidata
+router.put('/putProcenaKandidata/:id', async(req, res) => {
+  req.setTimeout(5*1000);
+    try {
+      let procenaData= {
+        godiste:req.body.godiste,
+        prebivaliste:req.body.prebivaliste,
+        pozicija:req.body.pozicija,
+        stepenSS:req.body.stepenSS,
+        stepenEng:req.body.stepenEng,
+        stepenNem:req.body.stepenNem,
+        stepenRacunar:req.body.stepenRacunar,
+        ans1:req.body.ans1,
+        ans1Desc:req.body.ans1Desc,
+        ans2:req.body.ans2,
+        ans2Desc:req.body.ans2Desc,
+        ans3:req.body.ans3,
+        ans3Desc:req.body.ans3Desc,
+        ans4:req.body.ans4,
+        ans4Desc:req.body.ans4Desc,
+        ans5:req.body.ans5,
+        ans5Desc:req.body.ans5Desc,
+        ans6:req.body.ans6,
+        ans6Desc:req.body.ans6Desc,
+        ans7:req.body.ans7,
+        ans7Desc:req.body.ans7Desc,
+        ans8:req.body.ans8,
+        ans8Desc:req.body.ans8Desc,
+        ans9:req.body.ans9,
+        ans9Desc:req.body.ans9Desc,
+        ans10:req.body.ans10,
+        ans10Desc:req.body.ans10Desc,
+        ans11:req.body.ans11,
+        ans11Desc:req.body.ans11Desc,
+        ans12:req.body.ans12,
+        ans12Desc:req.body.ans12Desc,
+        ans13:req.body.ans13,
+        ans13Desc:req.body.ans13Desc,
+        ans14:req.body.ans14,
+        ans14Desc:req.body.ans14Desc
+      }
+      // Check for the existing name
+      await User.findOne({
+          _id: req.params.id
+      }).then(async user => {
+          if (user) {
+
+            user.procenaKandidata = procenaData;
+            //user.belbinTest.finished = true;
+            user.save().then(user=>{
+              return res.status(201).json({
+                  success: true,
+                  msg: "user saved."
+              });
+            })
+
+          }else{
+            return res.status(400).json({
+                msg: "User doesn't exists."
+            });
+          }
+      });
+      // The data is valid and new we can register the user
+    } catch (e) {
+
+    } finally {
+
+    }
+});
+
 //Administer VQ
 router.put('/administerVQ/:id', async(req, res) => {
   req.setTimeout(5*1000);
